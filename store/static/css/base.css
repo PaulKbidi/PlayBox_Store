@@ -35,7 +35,13 @@ ul {
 }
 
 h1 a {
+    flex-direction: row;
     font-size: 2.5rem;
+}
+
+h1 a box-icon {
+    padding-top: 10px;
+    width: 3rem;
 }
 
 .other {

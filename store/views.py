@@ -33,3 +33,6 @@ def panier(request):
 
 def a_propos(request):
     return render(request, 'store/a_propos.html')
+
+def contact(request):
+    return render(request, 'store/contact.html')
