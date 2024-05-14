@@ -1,7 +1,7 @@
 .content {
     display: flex;
     position: relative;
-    background-color: #6600CC60;
+    background-color: #6600CC80;
     border-radius: 20px;
     justify-content: space-evenly;
     width: 90%;
@@ -11,6 +11,7 @@
 
 .text {
     width: 40rem;
+    color: white;
 }
 
 .description {

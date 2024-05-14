@@ -12,6 +12,7 @@
         <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
     </head>
     <body>
+        <div class="image-first"></div>
         <header>
             <div class="header">
                 <nav>
@@ -32,5 +33,12 @@
             </div>
         </header>
         {% block body %}{% endblock body %}
+        <footer>
+            <div>© 2024 PlayBox Store - Tout droits réservés</div>
+            <div>
+                <a href="#">Contact</a>
+                <a href="{% url "a-propos-url" %}">À Propos</a>
+            </div>
+        </footer>
     </body>
 </html>

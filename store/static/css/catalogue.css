@@ -1,11 +1,11 @@
 .promo {
     display: flex;
     position: relative;
-    background-color: #6600CC60;
+    background-color: #6600CC80;
     border-radius: 20px;
     justify-content: space-around;
     width: 90%;
-    margin: 0 auto;
+    margin: 2rem auto;
     flex-wrap: wrap;
 }
 
@@ -31,11 +31,57 @@ h1 {
     margin-bottom: 2rem;
     margin-left: 2rem;
     margin-right: 2rem;
-    background-color: white;
     padding: 2rem;
     border-radius: 20px;
+    color: white;
+    font-weight: 900;
 }
 
 .card img {
     width: 15rem;
+    border-radius: 20px;
+}
+
+form {
+    display: flex;
+    justify-content: center;
+}
+
+input[type="text"],
+select {
+  padding: 12px 20px;
+  margin: 2rem 1rem;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  background: #6600CC;
+  color: #fff;
+}
+
+input[type="text"]::placeholder{
+    color: white;
+}
+
+button[type="submit"] {
+    background-color: #6600CC;
+    color: white;
+    padding: 0 2rem;
+    margin: 1.5rem 0;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: x-large;
+}
+
+.filter {
+    display: flex;
+    justify-content: center;
+}
+
+.remove {
+    padding: 0.8rem;
+    border-radius: 10px;
+    background-color: #6600CC;
+    width: fit-content;
 }

@@ -11,4 +11,4 @@ class Product(models.Model):
     promo = models.BooleanField(default=False)
     
     def __str__(self):
-        return f"{self.title} - {self.picture}"
+        return f"{self.title}"

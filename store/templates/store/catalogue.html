@@ -8,20 +8,33 @@
 {% block title %}Catalogue{% endblock title %}
 
 {% block body %}
+    <form method="GET" action="{% url 'catalogue-url' %}">
+        <input type="text" name="search" placeholder="Rechercher...">
+        <select name="console">
+            <option value="">Toutes les consoles</option>
+            <option value="GameCube">GameCube</option>
+            <option value="WII">WII</option>
+            <option value="GameBoy Advance">GameBoy Advance</option>
+            <option value="Nintendo 64">Nintendo 64</option>
+        </select>
+        <select name="price">
+            <option value="">Toutes les fourchettes de prix</option>
+            <option value="0-50">0 - 50 €</option>
+            <option value="51-100">51 - 100 €</option>
+        </select>
+        <button type="submit">Filtrer</button>
+    </form>
+    <div class="filter">
+        <a class="remove" href="{% url "catalogue-url" %}"><box-icon name='x'></box-icon></a>
+    </div>
     <div class="promo">
-        {% for product in products %}
-                <div class="card">
-                    <a href="{% url "product-url" product.id %}"><img src="{{product.picture.url}}"></a>
-                    <h1>
-                        {{product.title}}
-                    </h1>
-                    <p>
-                        {{product.console}}
-                    </p>
-                    <p>
-                        {{product.price}} €
-                    </p>
-                </div>
+        {% for product in filtered_products %}
+            <div class="card">
+                <a href="{% url "product-url" product.id %}"><img src="{{product.picture.url}}"></a>
+                <h1>{{product.title}}</h1>
+                <p>{{product.console}}</p>
+                <p>{{product.price}} €</p>
+            </div>
         {% endfor %}
     </div>
 {% endblock body %}
