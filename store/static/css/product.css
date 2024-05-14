@@ -1,0 +1,28 @@
+.content {
+    display: flex;
+    position: relative;
+    background-color: #6600CC60;
+    border-radius: 20px;
+    justify-content: space-evenly;
+    width: 90%;
+    margin: 0 auto;
+    padding: 4rem 0;
+}
+
+.text {
+    width: 40rem;
+}
+
+.description {
+    font-size: 1.5rem;
+}
+
+.price {
+    margin-top: 5rem;
+    font-size: 2rem;
+}
+
+img {
+    border-radius: 20px;
+    width: 25rem;
+}
