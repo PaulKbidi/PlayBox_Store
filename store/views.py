@@ -70,6 +70,4 @@ def contact(request):
 
             return render(request, 'store/contact.html')
     else:
-        form = ContactForm()
-    
-    return render(request, 'store/contact.html', {'form': form})
+        return render(request, 'store/contact.html')
