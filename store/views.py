@@ -130,12 +130,15 @@ def create_checkout_session(request):
                 'quantity': 1,
             }],
             mode='payment',
-            success_url='http://192.168.0.28:8001',
-            cancel_url='http://192.168.0.28:8001/panier',
+            success_url='http://192.168.1.28:8001',
+            cancel_url='http://192.168.1.28:8001/panier',
         )
-        return JsonResponse({'id': session.id})
+        items.delete()
+        request.session['session_url'] = session.url
+        return redirect('checkout')
     else:
         return JsonResponse({'error': 'Méthode non autorisée'}, status=405)
 
 def checkout(request):
-    return redirect('https://checkout.stripe.com/c/pay/'+request.GET['session_id'])
+    session_url = request.session.get('session_url')
+    return redirect(session_url)
