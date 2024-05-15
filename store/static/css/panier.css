@@ -41,7 +41,21 @@ box-icon {
 
 .total_price {
     display: flex;
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
     color: white;
     font-size: x-large;
+}
+
+.total_price button {
+    background-color: #6600CC;
+    color: white;
+    padding: 1rem 2rem;
+    margin-top: 3rem;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: x-large;
+    border: 2px solid white;
 }

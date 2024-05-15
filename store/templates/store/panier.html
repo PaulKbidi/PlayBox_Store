@@ -22,6 +22,12 @@
             </div>
             {% endfor %}
         </div>
-        <div class="total_price">Total: {{ total_price }} €</div>
+        <div class="total_price">
+            Total: {{ total_price }} €
+            <form method="post" action="{% url 'create_checkout_session' %}">
+                {% csrf_token %}
+                <button type="submit">Commander</button>
+            </form>
+        </div>
     </div>
 {% endblock body %}

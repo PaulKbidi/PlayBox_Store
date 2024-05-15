@@ -5,6 +5,8 @@ from .forms import ContactForm, AddToCartForm
 import smtplib, ssl
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
+import stripe
+from django.http import JsonResponse
 
 def store(request):
     products = Product.objects.all()
@@ -108,3 +110,32 @@ def delete_item(request, item_id):
     item = get_object_or_404(CartItem, id=item_id)
     item.delete()
     return redirect('panier-url')
+
+def create_checkout_session(request):
+    if request.method == 'POST':
+        items = CartItem.objects.all()
+        total_price = sum(item.quantity * item.product.price for item in items)
+
+        stripe.api_key = 'sk_test_51PGfwuP7Riw006UHWRQA5le0PlUx969sVprnJeT5TPS4Ldfhykv8nfsBBTrW16SwTbn4RQLgBVXcUPUCofOMjl2k00rimcF8Qc'
+        session = stripe.checkout.Session.create(
+            payment_method_types=['card'],
+            line_items=[{
+                'price_data': {
+                    'currency': 'eur',
+                    'product_data': {
+                        'name': items,
+                    },
+                    'unit_amount': int(total_price * 100),
+                },
+                'quantity': 1,
+            }],
+            mode='payment',
+            success_url='http://192.168.0.28:8001',
+            cancel_url='http://192.168.0.28:8001/panier',
+        )
+        return JsonResponse({'id': session.id})
+    else:
+        return JsonResponse({'error': 'Méthode non autorisée'}, status=405)
+
+def checkout(request):
+    return redirect('https://checkout.stripe.com/c/pay/'+request.GET['session_id'])
