@@ -18,6 +18,11 @@
     font-size: 1.5rem;
 }
 
+.console {
+    font-size: 1.5rem;
+    margin-top: 1rem;
+}
+
 .price {
     margin-top: 5rem;
     font-size: 2rem;
@@ -26,4 +31,16 @@
 img {
     border-radius: 20px;
     width: 25rem;
+}
+
+input[type="submit"] {
+    background-color: #6600CC;
+    color: white;
+    padding: 1rem 2rem;
+    margin: 1.5rem 0;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: x-large;
+    border: 2px solid white;
 }

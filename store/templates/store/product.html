@@ -15,9 +15,16 @@
             <p class="description">
                 {{product.description}}
             </p>
+            <p class="console">
+                Console : {{product.console}}
+            </p>
             <p class="price">
                 Prix : {{product.price}}
             </p>
+            <form method="post" action="{% url 'add_to_cart-url' product.id %}">
+                {% csrf_token %}
+                <input type="submit" value="Ajouter au panier">
+            </form>
         </div>
     </div>
 {% endblock body %}

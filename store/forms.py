@@ -16,3 +16,6 @@ class ContactForm(forms.Form):
         widget=forms.Textarea,
         label='Message'
     )
+    
+class AddToCartForm(forms.Form):
+    quantity = forms.IntegerField(min_value=1, initial=1)

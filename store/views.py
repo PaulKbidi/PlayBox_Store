@@ -1,13 +1,14 @@
-from django.shortcuts import render
-from .models import Product
+from django.shortcuts import render, redirect, get_object_or_404
+from django.core.exceptions import ObjectDoesNotExist
+from .models import Product, Cart, CartItem
+from .forms import ContactForm, AddToCartForm
 import smtplib, ssl
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
-from .forms import ContactForm
-# Create your views here.
+
 def store(request):
     products = Product.objects.all()
-    return render(request, 'store/index.html', {'products':products})
+    return render(request, 'store/index.html', {'products': products})
 
 def catalogue(request):
     products = Product.objects.all()
@@ -29,11 +30,23 @@ def catalogue(request):
     return render(request, 'store/catalogue.html', context)
 
 def product(request, pk):
-    product = Product.objects.get(id=pk)
-    return render(request, 'store/product.html', {'product':product})
+    try:
+        product = Product.objects.get(id=pk)
+    except ObjectDoesNotExist:
+        return redirect('store')
+
+    if request.method == 'POST':
+        form = AddToCartForm(request.POST)
+        if form.is_valid():
+            return redirect('panier')
+    else:
+        form = AddToCartForm()
+    return render(request, 'store/product.html', {'product': product, 'form': form})
 
 def panier(request):
-    return render(request, 'store/panier.html')
+    items = CartItem.objects.all()
+    total_price = sum(item.quantity * item.product.price for item in items)
+    return render(request, 'store/panier.html', {'items':items, 'total_price': total_price})
 
 def a_propos(request):
     return render(request, 'store/a_propos.html')
@@ -71,3 +84,27 @@ def contact(request):
             return render(request, 'store/contact.html')
     else:
         return render(request, 'store/contact.html')
+
+def add_to_cart(request, product_id):
+    if request.method != 'POST':
+        return redirect('store-url')
+
+    try:
+        product = Product.objects.get(id=product_id)
+    except ObjectDoesNotExist:
+        return redirect('store-url')
+
+    cart, created = Cart.objects.get_or_create(user=request.user)
+
+    cart_item, item_created = CartItem.objects.get_or_create(cart=cart, product=product)
+
+    if not item_created:
+        cart_item.quantity += 1
+        cart_item.save()
+
+    return redirect('catalogue-url')
+
+def delete_item(request, item_id):
+    item = get_object_or_404(CartItem, id=item_id)
+    item.delete()
+    return redirect('panier-url')
