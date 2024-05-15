@@ -1,0 +1,65 @@
+.contact {
+    display: flex;
+    justify-content: center;
+    background-color: #6600CC80;
+    border-radius: 20px;
+    width: 90%;
+    margin: auto;
+    margin-bottom: 3rem;
+    padding: 2rem 0;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+label {
+    color: white;
+}
+
+input[type="text"],
+select {
+  padding: 12px 20px;
+  margin: 2rem 1rem;
+  width: 40rem;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  background: #6600CC;
+  color: #fff;
+}
+
+input[type="text"]::placeholder{
+    color: white;
+}
+
+input[type="submit"] {
+    background-color: #6600CC;
+    color: white;
+    padding: 1rem 2rem;
+    margin: 1.5rem 0;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: x-large;
+    border: 2px solid white;
+}
+
+textarea {
+  padding: 12px 20px;
+  margin: 2rem 1rem;
+  width: 40rem;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  background: #6600CC;
+  color: #fff;
+}
+
+textarea::placeholder {
+    color: white;
+}

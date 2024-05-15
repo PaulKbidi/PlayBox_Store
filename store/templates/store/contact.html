@@ -8,5 +8,42 @@
 {% block title %}PlayBox Store{% endblock title %}
 
 {% block body %}
-    
+<div class="contact">
+    <form action="{% url 'contact-url' %}" method="post">
+        {% csrf_token %}
+        <div class="question">
+            <div class="div">
+                <label for="name">Nom</label>
+                <div class="div0">
+                    <input type="text" id="name" name="name" placeholder="Nom" maxlength="100">
+                </div>
+            </div>
+        </div>
+        <div class="question">
+            <div class="div">
+                <label for="firstname">Prénom</label>
+                <div class="div0">
+                    <input type="text" id="firstname" name="firstname" placeholder="Prénom" maxlength="100">
+                </div>
+            </div>
+        </div>
+        <div class="question">
+            <div class="div">
+                <label for="email">Email</label>
+                <div class="div0">
+                    <input type="text" id="email" name="email" placeholder="Email">
+                </div>
+            </div>
+        </div>
+        <div class="question">
+            <div class="div">
+                <label for="message">Message</label>
+                <div class="div0">
+                    <textarea id="message" name="message" placeholder="Message" maxlength="300"></textarea>
+                </div>
+            </div>
+        </div>
+        <input class="fini" type="submit" value="Envoyer">
+    </form>
+</div>
 {% endblock body %}
