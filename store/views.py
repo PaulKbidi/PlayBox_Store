@@ -130,10 +130,9 @@ def create_checkout_session(request):
                 'quantity': 1,
             }],
             mode='payment',
-            success_url='http://192.168.1.28:8001',
-            cancel_url='http://192.168.1.28:8001/panier',
+            success_url='http://paulkbidi.fr:5050/success',
+            cancel_url='http://paulkbidi.fr:5050/cancel',
         )
-        items.delete()
         request.session['session_url'] = session.url
         return redirect('checkout')
     else:
@@ -142,3 +141,11 @@ def create_checkout_session(request):
 def checkout(request):
     session_url = request.session.get('session_url')
     return redirect(session_url)
+
+def success(request):
+    items = CartItem.objects.all()
+    items.delete()
+    return render (request, 'store/success.html')
+
+def cancel(request):
+    return render(request, 'store/cancel.html')

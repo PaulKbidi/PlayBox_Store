@@ -1,0 +1,14 @@
+{% extends "base/base.html" %}
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/panier.css' %}">
+{% endblock css %}
+
+{% block title %}Checkout canceled{% endblock title %}
+
+{% block body %}
+    <section>
+        <p>Forgot to add something to your cart? Shop around then come back to pay!</p>
+    </section>
+{% endblock body %}

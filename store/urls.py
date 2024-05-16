@@ -3,6 +3,8 @@ from django.urls import path
 from. import views
 
 urlpatterns = [
+    path('cancel/', views.cancel, name='cancel'),
+    path('success/', views.success, name='success'),
     path('checkout/', views.checkout, name='checkout'),
     path('create-checkout-session/', views.create_checkout_session, name='create_checkout_session'),
     path('delete-item/<int:item_id>', views.delete_item, name='delete_item-url'),
