@@ -1,0 +1,40 @@
+section {
+  display: flex;
+  position: relative;
+  background-color: #6600cc80;
+  border-radius: 20px;
+  justify-content: center;
+  align-items: center;
+  width: 90%;
+  margin: 2rem auto;
+  padding: 4rem 0;
+  min-height: 30rem;
+}
+
+section p {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: xx-large;
+  text-align: center;
+}
+
+box-icon {
+  width: 5rem;
+  fill: white;
+}
+
+section a {
+  background-color: #6600cc;
+  color: white;
+  width: fit-content;
+  padding: 1rem 2rem;
+  margin-top: 3rem;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: x-large;
+  border: 2px solid white;
+}

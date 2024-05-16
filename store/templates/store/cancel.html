@@ -2,13 +2,17 @@
 {% load static %}
 
 {% block css %}
-<link rel="stylesheet" href="{% static 'css/panier.css' %}">
+<link rel="stylesheet" href="{% static 'css/cancel.css' %}">
 {% endblock css %}
 
 {% block title %}Checkout canceled{% endblock title %}
 
 {% block body %}
     <section>
-        <p>Forgot to add something to your cart? Shop around then come back to pay!</p>
+        <p>
+            <box-icon size="cssSize" type='solid' name='invader'></box-icon><br>
+            Vous avez oublié d'ajouter quelque chose à votre panier ?<br>
+            Faites le tour puis revenez payer !
+        </p>
     </section>
 {% endblock body %}

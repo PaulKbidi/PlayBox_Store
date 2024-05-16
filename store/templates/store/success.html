@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block css %}
-<link rel="stylesheet" href="{% static 'css/panier.css' %}">
+<link rel="stylesheet" href="{% static 'css/success.css' %}">
 {% endblock css %}
 
 {% block title %}Thanks for your order!{% endblock title %}
@@ -10,8 +10,13 @@
 {% block body %}
     <section>
         <p>
-            We appreciate your business! If you have any questions, please email
-            <a href="mailto:orders@example.com">orders@example.com</a>.
+            Merci pour votre achat sur PlayBoxStore !<br>
+            Votre soutien est précieux. <br>
+            Profitez pleinement de vos articles.<br>
+            Pour toute assistance, contactez-nous. <br>
+            À bientôt ! L'équipe PlayBoxStore.<br>
+            <box-icon size="cssSize" name='party'></box-icon>
+            <a href="{% url "store-url" %}">Accueil</a>
         </p>
     </section>
 {% endblock body %}
