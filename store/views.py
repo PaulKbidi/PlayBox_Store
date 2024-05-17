@@ -46,7 +46,7 @@ def product(request, pk):
     return render(request, 'store/product.html', {'product': product, 'form': form})
 
 def panier(request):
-    cart = Cart.objects.get(user = request.user)
+    cart, created = Cart.objects.get_or_create(user=request.user)
     items = CartItem.objects.filter(cart=cart)
     total_price = sum(item.quantity * item.product.price for item in items)
     return render(request, 'store/panier.html', {'items':items, 'total_price': total_price})
@@ -145,7 +145,8 @@ def checkout(request):
     return redirect(session_url)
 
 def success(request):
-    items = CartItem.objects.all()
+    cart = Cart.objects.get(user = request.user)
+    items = CartItem.objects.filter(cart=cart)
     items.delete()
     return render (request, 'store/success.html')
 
