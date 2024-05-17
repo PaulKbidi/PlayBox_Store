@@ -46,7 +46,8 @@ def product(request, pk):
     return render(request, 'store/product.html', {'product': product, 'form': form})
 
 def panier(request):
-    items = CartItem.objects.all()
+    cart = Cart.objects.get(user = request.user)
+    items = CartItem.objects.filter(cart=cart)
     total_price = sum(item.quantity * item.product.price for item in items)
     return render(request, 'store/panier.html', {'items':items, 'total_price': total_price})
 
@@ -113,7 +114,8 @@ def delete_item(request, item_id):
 
 def create_checkout_session(request):
     if request.method == 'POST':
-        items = CartItem.objects.all()
+        cart = Cart.objects.get(user = request.user)
+        items = CartItem.objects.filter(cart=cart)
         total_price = sum(item.quantity * item.product.price for item in items)
 
         stripe.api_key = 'sk_test_51PGfwuP7Riw006UHWRQA5le0PlUx969sVprnJeT5TPS4Ldfhykv8nfsBBTrW16SwTbn4RQLgBVXcUPUCofOMjl2k00rimcF8Qc'
