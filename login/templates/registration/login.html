@@ -1,0 +1,31 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'login/css/login.css' %}">
+{% endblock css %}
+{% block title %}Connexion{% endblock title %}
+
+{% block body %}
+{% if form.errors %}
+    <p>Votre nom d'utilisateur et/ou mot de passe ne correspondent pas.</p>
+    <p> Merci de réessayer</p>
+{% endif %}
+<div class="login">
+  <form method="post" action="{% url 'login' %}">
+    {% csrf_token %}
+        <p>{{ form.username.label_tag }}</p>
+        <p>{{ form.username }}</p>
+        <p>{{ form.password.label_tag }}</p>
+        <p>{{ form.password }}</p>
+    <div class="connexion">
+      <input type="submit" value="Connexion"/>
+    </div>
+  </form>
+  <div class="register">
+      <p>Vous n'avez pas de compte?</p>
+      <a href="{% url 'register' %}">Inscription</a>
+  </div>
+</div>
+{% endblock body %}

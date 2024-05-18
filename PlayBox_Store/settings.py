@@ -32,6 +32,7 @@ ALLOWED_HOSTS = ['192.168.0.28','0.0.0.0','192.168.1.11','192.168.1.28','paulkbi
 # Application definition
 
 INSTALLED_APPS = [
+    'login',
     'store',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -127,3 +128,6 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'uploads/')
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'

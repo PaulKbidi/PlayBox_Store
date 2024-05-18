@@ -7,6 +7,11 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 import stripe
 from django.http import JsonResponse
+from django.contrib.auth.decorators import login_required
+from django.urls import reverse_lazy, reverse
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth import login, authenticate
+from django.contrib import messages
 
 def store(request):
     products = Product.objects.all()
@@ -45,6 +50,7 @@ def product(request, pk):
         form = AddToCartForm()
     return render(request, 'store/product.html', {'product': product, 'form': form})
 
+@login_required(login_url=reverse_lazy("login"))
 def panier(request):
     cart, created = Cart.objects.get_or_create(user=request.user)
     items = CartItem.objects.filter(cart=cart)
@@ -88,6 +94,7 @@ def contact(request):
     else:
         return render(request, 'store/contact.html')
 
+@login_required(login_url=reverse_lazy("login"))
 def add_to_cart(request, product_id):
     if request.method != 'POST':
         return redirect('store-url')
@@ -107,11 +114,13 @@ def add_to_cart(request, product_id):
 
     return redirect('catalogue-url')
 
+@login_required(login_url=reverse_lazy("login"))
 def delete_item(request, item_id):
     item = get_object_or_404(CartItem, id=item_id)
     item.delete()
     return redirect('panier-url')
 
+@login_required(login_url=reverse_lazy("login"))
 def create_checkout_session(request):
     if request.method == 'POST':
         cart = Cart.objects.get(user = request.user)
@@ -140,6 +149,7 @@ def create_checkout_session(request):
     else:
         return JsonResponse({'error': 'Méthode non autorisée'}, status=405)
 
+@login_required(login_url=reverse_lazy("login"))
 def checkout(request):
     session_url = request.session.get('session_url')
     return redirect(session_url)
@@ -152,3 +162,18 @@ def success(request):
 
 def cancel(request):
     return render(request, 'store/cancel.html')
+
+def register(request):
+	if request.method == 'POST' :
+		form = UserCreationForm(request.POST)
+		if form.is_valid():
+			form.save()		
+			username = form.cleaned_data.get('username')
+			password = form.cleaned_data.get('password1')
+			user = authenticate(username=username, password=password)
+			login(request,user)	
+			messages.success(request, f'Bonjour {username}, Votre compte a été créé avec succès !')					
+			return redirect('store-url')
+	else :
+		form = UserCreationForm()
+	return render(request,'store/register.html',{'form' : form})
