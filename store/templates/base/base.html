@@ -48,9 +48,10 @@
         </header>
         {% if messages %}
             {% for message in messages %}
-                <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+                <div class="alert0 alert-{{ message.tags }}">{{ message }}</div>
             {% endfor %}
         {% endif%}
+        {% comment %} <div class="alert alert-{{ message.tags }}">Bonjour redmaster, Votre compte a été créé avec succès !</div> {% endcomment %}
         {% block body %}{% endblock body %}
         <footer>
             <div>© 2024 PlayBox Store - Tout droits réservés</div>

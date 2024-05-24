@@ -4,11 +4,25 @@ body {
     margin: 0;
 }
 
+::-webkit-scrollbar {
+    width: 10px;
+    background: #6600CC40;
+}
+
+::-webkit-scrollbar-track {
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #6600CC;
+    border-radius: 10px;
+}
+
 .image-first {
     display: flex;
     height: 100%;
     width: 100%;
-    background-image: url("../image/images0.jpg");
+    background-image: url("../image/images1.webp");
     opacity: 80%;
     background-size: cover;
     position: fixed;
@@ -80,12 +94,26 @@ a {
 
 .alert{
     display: flex;
-    margin: auto;
+    margin: 1rem auto;
+    justify-content: center;
+    padding: 1rem 0;
+    background-color: red;
+    color: white;
+    font-size: large;
+    border-radius: 20px;
+    font-weight: bold;
+    font-family: "Jura", sans-serif;
+    width: 90%;
+}
+
+.alert0{
+    display: flex;
+    margin: 1rem auto;
     justify-content: center;
     padding: 1rem 0;
     background-color: #00e600;
     color: white;
-    font-size: xx-large;
+    font-size: large;
     border-radius: 20px;
     font-weight: bold;
     font-family: "Jura", sans-serif;
